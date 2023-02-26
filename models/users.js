@@ -90,7 +90,7 @@ const schema = new Schema({
   },
   image: {
     type: [String],
-    default: ['https://source.boringavatars.com/beam/256/${account.value}?colors=ffffff,eed7c5,9ec4bb,abe4ff,d9abff']
+    default: []
   },
   intro: {
     type: String

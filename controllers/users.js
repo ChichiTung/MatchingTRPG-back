@@ -10,7 +10,8 @@ export const register = async (req, res) => {
       password: req.body.password,
       email: req.body.email,
       dc_account: req.body.dc_account,
-      dc_id: req.body.dc_id
+      dc_id: req.body.dc_id,
+      image: req.file?.path || ''
     })
     res.status(200).json({ success: true, message: '註冊成功' })
   } catch (error) {
@@ -40,7 +41,8 @@ export const login = async (req, res) => {
         dc_account: req.user.dc_account,
         dc_id: req.user.dc_id,
         favorite: req.user.favorite,
-        role: req.user.role
+        role: req.user.role,
+        image: req.user.image
       }
     })
   } catch (error) {
@@ -79,14 +81,14 @@ export const getUser = (req, res) => {
         _id: req.user._id,
         account: req.user.account,
         email: req.user.email,
-        image: req.file?.path || '',
+        image: req.user.image || '',
         nickname: req.user.nickname,
         dc_account: req.user.dc_account,
         dc_id: req.user.dc_id,
         favorite: req.user.favorite,
         role: req.user.role,
-        freeTime: req.body.freeTime,
-        intro: req.body.intro
+        freeTime: req.user.freeTime,
+        intro: req.user.intro || ''
       }
     })
   } catch (error) {
@@ -104,7 +106,7 @@ export const editUser = async (req, res) => {
 
       image: req.file?.path || '',
       freeTime: req.body.freeTime,
-      intro: req.body.intro
+      intro: req.body.intro || ''
 
     }, { new: true })
     if (!result) {
