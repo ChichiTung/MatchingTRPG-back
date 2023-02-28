@@ -73,7 +73,6 @@ export const extend = async (req, res) => {
 }
 
 export const getUser = (req, res) => {
-  try {
     res.status(200).json({
       success: true,
       message: '',
