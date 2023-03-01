@@ -66,8 +66,7 @@ const schema = new Schema({
   },
   m_id: {
     type: ObjectId,
-    ref: 'modules',
-    default: ''
+    ref: 'modules'
     // required: [true, '缺少模組']
   },
   m_name: {

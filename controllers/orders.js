@@ -40,7 +40,7 @@ export const getMyOrders = async (req, res) => {
 
 export const getModuleOrders = async (req, res) => {
   try {
-    const result = await orders.find({ m_id: req.body.m_id }).populate('m_id')
+    const result = await orders.find({ m_id: req.params.id }).populate('m_id')
     res.status(200).json({ success: true, message: '', result })
   } catch (error) {
     res.status(500).json({ success: false, message: '未知錯誤' })

@@ -11,6 +11,6 @@ router.post('/', content('application/json'), jwt, createOrder, upload)
 router.get('/', jwt, getMyOrders)
 router.get('/gm', jwt, getAllOrdersGM)
 router.get('/all', jwt, getAllOrders)
-router.get('/module', jwt, getModuleOrders)
+router.get('/module/:id', jwt, getModuleOrders)
 
 export default router
