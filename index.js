@@ -7,6 +7,7 @@ import moduleRoute from './routes/modules.js'
 import orderRoute from './routes/orders.js'
 // import orderRoute from './routes/articles.js'
 import './passport/passport.js'
+import https from 'https'
 
 mongoose.set('strictQuery', false)
 mongoose.connect(process.env.DB_URL)
@@ -40,9 +41,9 @@ app.use('/users', userRoute)
 app.use('/modules', moduleRoute)
 app.use('/orders', orderRoute)
 
-app.get('/', (req, res) => {
-  res.status(200).json({ success: true, message: '' })
-})
+// app.get('/', (req, res) => {
+//   res.status(200).json({ success: true, message: '' })
+// })
 
 app.all('*', (req, res) => {
   res.status(404).json({ success: false, message: '找不到' })
@@ -51,3 +52,9 @@ app.all('*', (req, res) => {
 app.listen(process.env.PORT || 4000, () => {
   console.log('魔幻舞台，伺服器開門')
 })
+
+if (process.env.RENDER) {
+  setInterval(() => {
+    https.get(process.env.RENDER)
+  }, 1000 * 60 * 5)
+}

@@ -38,6 +38,15 @@ export const getMyOrders = async (req, res) => {
   }
 }
 
+export const getModuleOrders = async (req, res) => {
+  try {
+    const result = await orders.find({ m_id: req.body.m_id }).populate('m_id')
+    res.status(200).json({ success: true, message: '', result })
+  } catch (error) {
+    res.status(500).json({ success: false, message: '未知錯誤' })
+  }
+}
+
 export const getAllOrdersGM = async (req, res) => {
   try {
     // .populate(關聯資料路徑, 取的欄位)
@@ -74,6 +83,7 @@ export const editOrder = async (req, res) => {
       pl_dc_id: req.user.dc_id,
 
       // schema
+      date: req.body.date,
       ho: req.body.ho
     }, { new: true })
     if (!result) {
